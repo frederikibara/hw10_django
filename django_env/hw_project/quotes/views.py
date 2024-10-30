@@ -13,7 +13,7 @@ def main(request, page=1):
     top_tags = get_top_tags()
     return render(request, 'quotes/index.html', context={'quotes': quotes_on_page, 'top_tags': top_tags})
     
-
+  
 @login_required
 def add_author(request):
     if request.method == 'POST':
