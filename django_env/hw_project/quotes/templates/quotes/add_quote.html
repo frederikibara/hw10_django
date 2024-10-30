@@ -1,0 +1,28 @@
+{% extends 'quotes/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Add Quote</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="text" class="form-label">Quote Text</label>
+            <textarea name="text" class="form-control" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="author" class="form-label">Author</label>
+            <select name="author" class="form-select" required>
+                <!-- Здесь вы должны динамически подставить авторов из базы данных -->
+                {% for author in authors %}
+                    <option value="{{ author.id }}">{{ author.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="tags" class="form-label">Tags (comma separated)</label>
+            <input type="text" name="tags" class="form-control" placeholder="e.g. inspirational, life" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Quote</button>
+    </form>
+</div>
+{% endblock %}
